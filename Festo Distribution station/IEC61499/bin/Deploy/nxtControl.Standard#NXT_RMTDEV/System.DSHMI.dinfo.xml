@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DeployInformation ProjectName="Festo Distribution station" ProjectGuid="{3B202251-04B1-4DF9-929E-79AE1EC29A6D}" System="System" DeviceName="DSHMI">
+  <DeviceProperties>
+    <Property Name="MacAddress" Value="" />
+    <Property Name="IPAddress" Value="127.0.0.1" />
+    <ComplexProperty Name="Ports">
+      <Property Name="Deploy" Value="61499" />
+      <Property Name="HMI" Value="61498" />
+      <Property Name="Watch" Value="61497" />
+      <Property Name="Archive" Value="61496" />
+      <Property Name="LocalArchive" Value="8180" />
+    </ComplexProperty>
+    <GroupProperty Name="LocalArchive" Enabled="false">
+      <Property Name="Values" Value="true" />
+      <Property Name="Alarms" Value="false" />
+      <Property Name="Journal" Value="false" />
+      <Property Name="UserId" Value="localdb" />
+      <Property Name="Password" Value="localdb" />
+      <Property Name="ConnectTimeout" Value="5000" />
+      <Property Name="ConnectRetryTime" Value="15000" />
+      <Property Name="ServerTimeout" Value="30000" />
+      <Property Name="DataChunk" Value="100" />
+      <Property Name="WaitPollData" Value="100" />
+      <Property Name="WaitPollNoData" Value="5000" />
+    </GroupProperty>
+    <Property Name="Login" Value="Yes" />
+  </DeviceProperties>
+  <UsedDll>IEC61499.exe|Runtime.Base.dll</UsedDll>
+  <FileName>C:\Users\Sandeep Patil\Documents\NxtOneV3Examples\Festo Distribution station\IEC61499\System\System.sys</FileName>
+  <BuildTime>2018-02-15 10:00:51Z</BuildTime>
+  <StudioVersion>IEC 61499 IDE, Gaia release-3.0.0 g2193 6473910 Thu Mar 30 22:39:18 2017</StudioVersion>
+  <StudioInfo>V1;1586C93F1005F7B472AC32E02D18BC9D269900E93615E6BD72C863BE704CB7EA039330C22511E2EC038F3FE9255CC9BE2B9F73CD724EB4E074B63AEF0713EAA12E942AB11112EEA72A8820F82D05A7BE29DA1FF92819E6EA039330C9291DEEBD728C7DFA3D1DF3BA269413E03009A9A22AC103FE2B16E2B23BB432E12141C1B43C8E3CAC0015F4A53D9331F93015E8BF6F8927ED3015E8BF74AA21E32E19E4A5088F3AE87907B4937DCA61BE714DAAE17BB862A17038C1E862C361B50151B0E80EBF62C9074EBE9079BE2EB7;</StudioInfo>
+  <Actions>
+    <Action Method="normal" Context="deploy" Priority="700" Operation="copy" FileType="bootproject">
+      <LocalFile>System.DSHMI.drq.xml</LocalFile>
+    </Action>
+  </Actions>
+  <RequestCollectionFileName>System.DSHMI.drq.xml</RequestCollectionFileName>
+  <DeviceFileName>System.DSHMI.sysdev.xml</DeviceFileName>
+  <DependenciesFileName>System.DSHMI.fbdep.txt</DependenciesFileName>
+</DeployInformation>

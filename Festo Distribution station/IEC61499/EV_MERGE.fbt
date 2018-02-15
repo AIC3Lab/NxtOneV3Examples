@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="6A89921CE8D8527F" Name="EV_MERGE" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/9/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="E1" Comment="Initialization Request" />
+      <Event Name="E2" Comment="Normal Execution Request" />
+      <Event Name="E3" />
+      <Event Name="E4" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Initialization Confirm" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="E_MERGE" x="1060" y="540" Namespace="IEC61499.Standard" />
+    <FB ID="2" Name="FB2" Type="E_MERGE" x="1080" y="960" Namespace="IEC61499.Standard" />
+    <FB ID="3" Name="FB3" Type="E_MERGE" x="1720" y="740" Namespace="IEC61499.Standard" />
+    <Input Name="E1" x="280" y="472" Type="Event" />
+    <Input Name="E2" x="280" y="532" Type="Event" />
+    <Input Name="E3" x="280" y="592" Type="Event" />
+    <Input Name="E4" x="280" y="652" Type="Event" />
+    <Output Name="EO" x="2380" y="472" Type="Event" />
+    <EventConnections>
+      <Connection Source="E1" Destination="FB1.EI1" dx1="49.8125" />
+      <Connection Source="E2" Destination="FB1.EI2" dx1="49.8125" />
+      <Connection Source="E3" Destination="FB2.EI1" dx1="49.8125" />
+      <Connection Source="E4" Destination="FB2.EI2">
+        <Points>
+          <Points>
+            <X>125.046875</X>
+            <Y>170</Y>
+          </Points>
+          <Points>
+            <X>125</X>
+            <Y>170</Y>
+          </Points>
+          <Points>
+            <X>125</X>
+            <Y>265</Y>
+          </Points>
+          <Points>
+            <X>265</X>
+            <Y>265</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.EO" Destination="FB3.EI1" dx1="41.54175" />
+      <Connection Source="FB2.EO" Destination="FB3.EI2" dx1="41.54175" />
+      <Connection Source="FB3.EO" Destination="EO" dx1="41.54175" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,16 @@
+IEC61499.exe:Basics/Main#integEC.bin
+IEC61499.exe:Basics/Main#ChangeDetect.bin
+IEC61499.exe:Basics/Main#InRange.bin
+IEC61499.exe:Basics/Main#ArmControl.bin
+IEC61499.exe:Composites/Main#TransferUnit.bin
+IEC61499.exe:Basics/Main#BigDemux.bin
+IEC61499.exe:Basics/Main#PhysicsRulesWorkPieces.bin
+IEC61499.exe:Composites/Main#WorkPieces.bin
+IEC61499.exe:HMIAccessors/Main#Model_HMI.bin
+IEC61499.exe:Basics/Main#CylControl.bin
+IEC61499.exe:Composites/Main#Pusher.bin
+IEC61499.exe:Basics/Main#NOT_42C76073DCEB1A7A.bin
+IEC61499.exe:Composites/Main#Model.bin
+IEC61499.exe:Basics/Main#RotatingArmControl.bin
+IEC61499.exe:Basics/Main#StackMagazineControl.bin
+IEC61499.exe:Composites/Main#Control.bin

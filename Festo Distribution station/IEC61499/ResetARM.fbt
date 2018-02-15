@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="1832F9B47F2F3300" Name="ResetARM" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/12/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="RESET" Comment="Initialization Request" />
+      <Event Name="REQ">
+        <With Var="at_client" />
+        <With Var="vacuum_on" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Initialization Confirm" />
+      <Event Name="R_GO_TO_MAG" Comment="Execution Confirmation" />
+      <Event Name="S_GO_TO_CLIENT" Comment="Initialization Confirm" />
+      <Event Name="R_GO_TO_CLIENT" Comment="Execution Confirmation" />
+      <Event Name="R_VACUUM_ON" Comment="Execution Confirmation" />
+      <Event Name="S_VACUUM_OFF" Comment="Initialization Confirm" />
+      <Event Name="R_VACUUM_OFF" Comment="Execution Confirmation" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="at_client" Type="BOOL" />
+      <VarDeclaration Name="vacuum_on" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="RESET" Comment="Normal execution" x="1153.647" y="460.9412">
+        <ECAction Output="R_GO_TO_MAG" />
+        <ECAction Output="S_GO_TO_CLIENT" />
+        <ECAction Output="R_VACUUM_ON" />
+        <ECAction Output="S_VACUUM_OFF" />
+      </ECState>
+      <ECState Name="DONE" x="616" y="868">
+        <ECAction Output="R_GO_TO_CLIENT" />
+        <ECAction Output="R_VACUUM_OFF" />
+        <ECAction Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="RESET" Condition="RESET" x="870.7484" y="358.4196">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="202.6244,85.60748,233.389,87.13338" />
+      </ECTransition>
+      <ECTransition Source="RESET" Destination="DONE" Condition="REQ AND at_client AND NOT vacuum_on" x="985.1304" y="686.5687">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="262.3067,162.8369,239.4407,183.6537" />
+      </ECTransition>
+      <ECTransition Source="DONE" Destination="START" Condition="1" x="491.0632" y="653.0972">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="119.7582,177.6024,116.2443,149.6781" />
+      </ECTransition>
+    </ECC>
+  </BasicFB>
+</FBType>

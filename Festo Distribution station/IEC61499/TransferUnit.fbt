@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="TransferUnit" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="9" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Andrei" Date="7/14/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="to_mgz" />
+        <With Var="to_next" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="to_mgz" />
+        <With Var="to_next" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="angle" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="angle" />
+      </Event>
+      <Event Name="CHG">
+        <With Var="at_mgz" />
+        <With Var="at_next" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="to_mgz" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="to_next" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="angle" Type="REAL" Comment="Output event qualifier" />
+      <VarDeclaration Name="at_mgz" Type="BOOL" />
+      <VarDeclaration Name="at_next" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="2" Name="FB2" Type="integEC" x="2320" y="920" Namespace="Main">
+      <Parameter Name="inv1" Value="FALSE" />
+      <Parameter Name="inv2" Value="TRUE" />
+      <Parameter Name="tBase1" Value="1.0" />
+      <Parameter Name="tBase2" Value="1.0" />
+      <Parameter Name="sp" Value="100.0" />
+      <Parameter Name="preTrip" Value="0.0" />
+      <Parameter Name="integType" Value="0" />
+      <Parameter Name="cycleTime" Value="0.02" />
+      <Parameter Name="maxValue" Value="180.0" />
+      <Parameter Name="minValue" Value="0.0" />
+      <Parameter Name="useLimits" Value="TRUE" />
+    </FB>
+    <FB ID="3" Name="FB3" Type="E_CYCLE" x="1640" y="400" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="t#20ms" />
+    </FB>
+    <FB ID="4" Name="FB4" Type="ChangeDetect" x="3020" y="1100" Namespace="Main" />
+    <FB ID="5" Name="FB5" Type="InRange" x="3800" y="920" Namespace="Main">
+      <Parameter Name="Range" Value="[0.0,0.5]" />
+    </FB>
+    <FB ID="6" Name="FB6" Type="InRange" x="3800" y="1540" Namespace="Main">
+      <Parameter Name="Range" Value="[179.5,180.0]" />
+    </FB>
+    <FB ID="7" Name="FB7" Type="E_MERGE" x="5460" y="980" Namespace="IEC61499.Standard" />
+    <FB ID="1" Name="FB1" Type="ArmControl" x="1500" y="1040" Namespace="Main" />
+    <FB ID="8" Name="FB8" Type="ChangeDetect" x="4360" y="980" Namespace="Main" />
+    <FB ID="9" Name="FB9" Type="ChangeDetect" x="4380" y="1600" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>210</X>
+        <Y>262.963562</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>210</X>
+        <Y>277.963562</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="to_mgz">
+      <Position>
+        <X>210</X>
+        <Y>342.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="to_next">
+      <Position>
+        <X>210</X>
+        <Y>327.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>1085</X>
+        <Y>357.963562</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>875</X>
+        <Y>527.9635</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="angle">
+      <Position>
+        <X>911.2187</X>
+        <Y>567.9635</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="CHG">
+      <Position>
+        <X>1465</X>
+        <Y>247.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="at_mgz">
+      <Position>
+        <X>1205</X>
+        <Y>452.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="at_next">
+      <Position>
+        <X>1200</X>
+        <Y>297.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="REQ" Destination="FB1.REQ" dx1="40" />
+      <Connection Source="INIT" Destination="FB1.INIT" dx1="40" />
+      <Connection Source="FB1.CNF" Destination="FB2.OP_UPD" />
+      <Connection Source="FB1.INITO" Destination="FB2.INIT" dx1="18.60413">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.EO" Destination="FB2.C_CYCLE" dx1="158.5">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.CNF" Destination="FB4.REQ" dx1="64.1875" />
+      <Connection Source="FB2.INITO" Destination="FB5.INIT" />
+      <Connection Source="FB4.CHG" Destination="FB5.REQ" dx1="87.22925">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.INITO" Destination="FB6.INIT" dx1="60.5" dx2="30" dy="442">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB6.INITO" Destination="INITO" dx1="50.5" />
+      <Connection Source="FB7.EO" Destination="CHG" dx1="41.54199" />
+      <Connection Source="FB4.CHG" Destination="FB6.REQ" dx1="87.22925">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.CHG" Destination="CNF" dx1="87.22925">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.INITO" Destination="FB3.START" dx1="74.1875" dx2="50" dy="-658">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.CHG" Destination="FB8.REQ" />
+      <Connection Source="FB6.CHG" Destination="FB9.REQ" />
+      <Connection Source="FB8.CHG" Destination="FB7.EI1" />
+      <Connection Source="FB9.CHG" Destination="FB7.EI2" dx1="607.229">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="to_next" Destination="FB1.CW" dx1="40" />
+      <Connection Source="to_mgz" Destination="FB1.CCW" dx1="40" />
+      <Connection Source="FB1.pv1" Destination="FB2.pv1" />
+      <Connection Source="FB1.pv2" Destination="FB2.pv2" />
+      <Connection Source="FB2.out" Destination="FB4.INP" />
+      <Connection Source="FB4.OUT" Destination="FB5.pos" dx1="47.22925">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.OUT" Destination="FB6.pos" dx1="40" />
+      <Connection Source="FB4.OUT" Destination="angle" dx1="40" />
+      <Connection Source="FB5.result" Destination="FB8.INP" />
+      <Connection Source="FB6.result" Destination="FB9.INP" />
+      <Connection Source="FB9.OUT" Destination="at_mgz" dx1="40" />
+      <Connection Source="FB8.OUT" Destination="at_next" dx1="40" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="3FB5C144B3879221" Name="StackMagazineControl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/9/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="empty" />
+        <With Var="retracted" />
+        <With Var="extended" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="empty" />
+        <With Var="extended" />
+        <With Var="retracted" />
+      </Event>
+      <Event Name="NEXT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="retract" />
+      </Event>
+      <Event Name="PICK" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="empty" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="retracted" Type="BOOL" />
+      <VarDeclaration Name="extended" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="retract" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,EXTEND,RETRACT" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="624.9412" y="309.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1295.53" y="281.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="READY" x="1648" y="620" />
+      <ECState Name="RETRACT" x="1388" y="1016">
+        <ECAction Algorithm="RETRACT" Output="CNF" />
+      </ECState>
+      <ECState Name="EXTEND" x="492" y="860.0001">
+        <ECAction Algorithm="EXTEND" Output="CNF" />
+        <ECAction Output="PICK" />
+      </ECState>
+      <ECState Name="WAIT" x="704" y="516">
+        <ECAction Output="PICK" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="944.6998" y="175.7632">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="217.4355,38.60419,253.2406,37.36627" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="RETRACT" Condition="REQ AND NOT empty" x="1605.795" y="837.6454">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="412.1924,198.6535,398.0532,223.4435" />
+      </ECTransition>
+      <ECTransition Source="EXTEND" Destination="WAIT" Condition="REQ AND extended" x="454.767" y="661.5156">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="102.1334,173.4193,112.6146,153.7391" />
+      </ECTransition>
+      <ECTransition Source="WAIT" Destination="RETRACT" Condition="NEXT AND NOT empty" x="1130.657" y="676.9929">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="262.9784,146.2128,309.6029,180.0059" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="READY" Condition="REQ AND extended" x="1561.126" y="449.0714">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="384.2094,102.4925,404.5346,122.0307" />
+      </ECTransition>
+      <ECTransition Source="RETRACT" Destination="EXTEND" Condition="REQ AND retracted" x="858.665" y="1148.197">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="235.08,304.4095,186.9207,296.0246" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="retract := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="EXTEND" Comment="Normally executed algorithm">
+      <ST Text="retract := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="RETRACT">
+      <ST Text="retract := TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

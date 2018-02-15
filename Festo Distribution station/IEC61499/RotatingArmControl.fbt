@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="13EA7AAF5A72DB08" Name="RotatingArmControl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/9/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="vac_on" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="vac_on" />
+      </Event>
+      <Event Name="PICK" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="vacuum_on" />
+        <With Var="vacuum_off" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="vacuum_on" />
+        <With Var="vacuum_off" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+      </Event>
+      <Event Name="NEXT" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="at_magazine" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="at_client" Type="BOOL" />
+      <VarDeclaration Name="vac_on" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="vacuum_on" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="vacuum_off" Type="BOOL" />
+      <VarDeclaration Name="to_magazine" Type="BOOL" />
+      <VarDeclaration Name="to_client" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,TO_MAG,PICK_WP,TO_CLIENT,DROP_WP" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="464.9412" y="349.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1019.529" y="149.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="DROP" Comment="Normal execution" x="477.647" y="880.9412">
+        <ECAction Algorithm="DROP_WP" Output="CNF" />
+      </ECState>
+      <ECState Name="READY" x="1488" y="452" />
+      <ECState Name="TO_MAG" x="1516" y="772.0001">
+        <ECAction Algorithm="TO_MAG" Output="CNF" />
+      </ECState>
+      <ECState Name="PICK_WP" x="1584" y="1200">
+        <ECAction Algorithm="PICK_WP" Output="CNF" />
+      </ECState>
+      <ECState Name="TO_CLIENT" x="488" y="1224">
+        <ECAction Algorithm="TO_CLIENT" Output="CNF" />
+      </ECState>
+      <ECState Name="WAIT" x="583.9999" y="540">
+        <ECAction Output="NEXT" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="752.975" y="161.2453">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="176.3221,40.65847,204.0567,30.64485" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="READY" Condition="REQ AND at_client AND NOT vac_on" x="1341.201" y="291.3838">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="325.554,63.48502,354.4039,82.1688" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="TO_MAG" Condition="PICK" x="1560.587" y="612.7378">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="392.1153,144.3143,393.1527,162.1776" />
+      </ECTransition>
+      <ECTransition Source="TO_MAG" Destination="PICK_WP" Condition="REQ AND at_magazine" x="1624.2" y="983.9208">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="407.9315,232.2752,411.6573,259.3386" />
+      </ECTransition>
+      <ECTransition Source="PICK_WP" Destination="TO_CLIENT" Condition="REQ AND vac_on" x="1237.824" y="1388.825">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="345.0295,357.9001,296.5479,357.2862" />
+      </ECTransition>
+      <ECTransition Source="TO_CLIENT" Destination="DROP" Condition="REQ AND at_client" x="475.054" y="1060.406">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="118.7431,275.7157,118.1152,255.8101" />
+      </ECTransition>
+      <ECTransition Source="DROP" Destination="WAIT" Condition="REQ AND NOT vac_on" x="369.9847" y="736.8387">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="82.0284,195.5944,88.66058,177.2197" />
+      </ECTransition>
+      <ECTransition Source="WAIT" Destination="READY" Condition="1" x="913.5531" y="365.9329">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="194.3402,86.80974,248.7598,81.67429" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="to_client := TRUE;&#xD;&#xA;vacuum_off := TRUE;&#xD;&#xA;vacuum_on := FALSE;&#xD;&#xA;to_magazine := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="PICK_WP" Comment="Normally executed algorithm">
+      <ST Text="vacuum_on := TRUE;&#xD;&#xA;to_magazine := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="TO_MAG">
+      <ST Text="to_magazine := TRUE;&#xD;&#xA;to_client := FALSE;&#xD;&#xA;vacuum_off := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="TO_CLIENT">
+      <ST Text="to_magazine := FALSE;&#xD;&#xA;to_client := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="DROP_WP">
+      <ST Text="vacuum_off := TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

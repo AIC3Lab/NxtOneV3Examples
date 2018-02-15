@@ -1,0 +1,196 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{3B202251-04B1-4DF9-929E-79AE1EC29A6D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>IEC61499</AssemblyName>
+    <NxtVersion>3.0.0.0</NxtVersion>
+    <Platform Condition=" '$(Platform)' == '' ">Windows</Platform>
+    <CreateHMI>false</CreateHMI>
+    <HMIProject>HMI</HMIProject>
+    <CATInstancesHaveIds>true</CATInstancesHaveIds>
+    <ProjectType>IEC61499</ProjectType>
+    <CreateHMICF>false</CreateHMICF>
+    <VerboseDeploy>False</VerboseDeploy>
+    <DeployOnlyChanges>False</DeployOnlyChanges>
+    <DeployConnectionTimeout>60</DeployConnectionTimeout>
+    <DeployAnswerTimeout>10</DeployAnswerTimeout>
+    <DeployPreConnectWait>2</DeployPreConnectWait>
+    <ArchiveLinkServiceTimeout>30</ArchiveLinkServiceTimeout>
+    <CheckGenericInstances>False</CheckGenericInstances>
+    <ConvertStringValues>False</ConvertStringValues>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Default\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <IntermediateOutputPath>obj\Default\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Default\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <IntermediateOutputPath>obj\Default\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows' ">
+    <Version>1.0</Version>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Windows' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <Import Project="$(SharpDevelopBinPath)\NxtControl.Build.61499.Targets" />
+  <ItemGroup>
+    <None Include="ButtonsPanel\ButtonsPanel.cfg">
+      <DependentUpon>ButtonsPanel.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="IEC61499.iecproj" />
+    <None Include="Model\Model.cfg">
+      <DependentUpon>Model.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="Project.doc.xml" />
+    <None Include="System\System.cfg">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+    <None Include="System\System.Device.Properties.xml">
+      <DependentUpon>System.sys</DependentUpon>
+    </None>
+    <None Include="Test\Test.cfg">
+      <DependentUpon>Test.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <Compile Include="ArmControl.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="BigDemux.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="ButtonsPanel\ButtonsPanel.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="ButtonsPanel\ButtonsPanel_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>ButtonsPanel.fbt</DependentUpon>
+      <HMI>..\HMI\ButtonsPanel\ButtonsPanel_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="ChangeDetect.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="Control.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="CylControl.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="Demux.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="EV_MERGE.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="InRange.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="integEC.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="Model\Model.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="Model\Model_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>Model.fbt</DependentUpon>
+      <HMI>..\HMI\Model\Model_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="Muxi.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="PhysicsRulesWorkPieces.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="Pusher.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="RefactoredDSControl.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+      <Parent>.Control</Parent>
+    </Compile>
+    <Compile Include="RefactorRotatingArmControl.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="ResetARM.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="RotatingArmControl.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="RotatingArmReset.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="StackMagazineControl.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="System\System.sys">
+      <IEC61499Type>System</IEC61499Type>
+    </Compile>
+    <Compile Include="Test\Test.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="Test\Test_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>Test.fbt</DependentUpon>
+      <HMI>..\HMI\Test\Test_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="TransferUnit.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="TrueUntil.fbt">
+      <Parent>.Control</Parent>
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="WorkPieces.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+    <Compile Include="Wp.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+      <Parent>.Plant</Parent>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <Folder Include="License" />
+    <Folder Include="Log" />
+    <Reference Include="nxtControl.Standard">
+      <Version>2.1.1.0</Version>
+    </Reference>
+    <Reference Include="Runtime.Base">
+      <Version>2.1.1.0</Version>
+    </Reference>
+  </ItemGroup>
+</Project>

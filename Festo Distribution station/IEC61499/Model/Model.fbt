@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="E94AD78C03606F53" Name="Model" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="9" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Andrei" Date="7/13/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="retract" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+        <With Var="vaccuum_off" />
+        <With Var="vaccuum_on" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="retract" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+        <With Var="vaccuum_off" />
+        <With Var="vaccuum_on" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="extended" />
+        <With Var="retracted" />
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="vac_on" />
+        <With Var="empty" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="extended" />
+        <With Var="retracted" />
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="vac_on" />
+        <With Var="empty" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="vaccuum_on" Type="BOOL" />
+      <VarDeclaration Name="vaccuum_off" Type="BOOL" />
+      <VarDeclaration Name="to_magazine" Type="BOOL" />
+      <VarDeclaration Name="to_client" Type="BOOL" />
+      <VarDeclaration Name="retract" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="retracted" Type="BOOL" />
+      <VarDeclaration Name="extended" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="at_magazine" Type="BOOL" />
+      <VarDeclaration Name="at_client" Type="BOOL" />
+      <VarDeclaration Name="empty" Type="BOOL" />
+      <VarDeclaration Name="vac_on" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" Name="FB3" Type="E_MERGE" x="4680" y="680" Namespace="IEC61499.Standard" />
+    <FB ID="7" Name="FB5" Type="E_MERGE" x="5280" y="680" Namespace="IEC61499.Standard" />
+    <FB ID="5" Name="FB2" Type="TransferUnit" x="1260" y="1580" Namespace="Main" />
+    <FB ID="6" Name="FB4" Type="WorkPieces" x="2980" y="680" Namespace="Main" />
+    <FB ID="8" Name="IThis" Type="Model_HMI" x="4420" y="2020" Namespace="Main" />
+    <FB ID="4" Name="FB1" Type="Pusher" x="1260" y="620" Namespace="Main" />
+    <FB ID="9" Name="FB6" Type="NOT_42C76073DCEB1A7A" x="440" y="1020" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=1;OUT${CNT}:BOOL" />
+    </FB>
+    <Input Name="INIT" x="580" y="1592" Type="Event" />
+    <Input Name="REQ" x="540" y="592" Type="Event" />
+    <Input Name="retract" x="160" y="811.8542" Type="Data" />
+    <Input Name="to_magazine" x="580" y="1911.854" Type="Data" />
+    <Input Name="to_client" x="580" y="1971.854" Type="Data" />
+    <Input Name="vaccuum_off" x="2380" y="1132" Type="Data" />
+    <Input Name="vaccuum_on" x="2380" y="1072" Type="Data" />
+    <Output Name="INITO" x="5080" y="2032" Type="Event" />
+    <Output Name="CNF" x="5700" y="692" Type="Event" />
+    <Output Name="extended" x="1820" y="1071.854" Type="Data" />
+    <Output Name="retracted" x="1820" y="1011.854" Type="Data" />
+    <Output Name="at_magazine" x="1800" y="1971.854" Type="Data" />
+    <Output Name="at_client" x="1800" y="2031.854" Type="Data" />
+    <Output Name="vac_on" x="4460" y="1011.854" Type="Data" />
+    <Output Name="empty" x="4460" y="1072" Type="Data" />
+    <EventConnections>
+      <Connection Source="FB1.CNF" Destination="FB4.REQ">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.CHG" Destination="FB3.EI2" />
+      <Connection Source="FB1.CHG" Destination="FB3.EI1">
+        <Points>
+          <Points>
+            <X>430.625</X>
+            <Y>165</Y>
+          </Points>
+          <Points>
+            <X>467.5</X>
+            <Y>165</Y>
+          </Points>
+          <Points>
+            <X>467.5</X>
+            <Y>152.5</Y>
+          </Points>
+          <Points>
+            <X>932.5</X>
+            <Y>152.5</Y>
+          </Points>
+          <Points>
+            <X>932.5</X>
+            <Y>180</Y>
+          </Points>
+          <Points>
+            <X>1165</X>
+            <Y>180</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB3.EO" Destination="FB5.EI1" />
+      <Connection Source="FB2.CHG" Destination="FB5.EI2">
+        <Points>
+          <Points>
+            <X>419.8854</X>
+            <Y>434.536469</Y>
+          </Points>
+          <Points>
+            <X>442.5</X>
+            <Y>434.536469</Y>
+          </Points>
+          <Points>
+            <X>442.5</X>
+            <Y>152.536469</Y>
+          </Points>
+          <Points>
+            <X>1247.5</X>
+            <Y>152.536469</Y>
+          </Points>
+          <Points>
+            <X>1247.5</X>
+            <Y>194.536469</Y>
+          </Points>
+          <Points>
+            <X>1315</X>
+            <Y>194.536469</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB2.INITO" Destination="FB1.INIT" dx1="52.60413" dx2="120" dy="-298">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="INIT" Destination="FB2.INIT" dx1="40" />
+      <Connection Source="REQ" Destination="FB1.REQ" dx1="49.54169" />
+      <Connection Source="REQ" Destination="FB2.REQ" dx1="278.9584">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.INITO" Destination="FB4.INIT" />
+      <Connection Source="FB2.CNF" Destination="FB4.REQ" dx1="592.6041">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.EO" Destination="CNF" dx1="40" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="40" />
+      <Connection Source="FB4.INITO" Destination="IThis.INIT" dx1="383.6038">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.CNF" Destination="IThis.REQ" dx1="347.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.CNF" Destination="IThis.REQ" dx1="592.6041">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.CNF" Destination="IThis.REQ" dx1="597.5005">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="REQ" Destination="FB4.REQ">
+        <Points>
+          <Points>
+            <X>200.114578</X>
+            <Y>155</Y>
+          </Points>
+          <Points>
+            <X>212.5</X>
+            <Y>155</Y>
+          </Points>
+          <Points>
+            <X>212.5</X>
+            <Y>137.5</Y>
+          </Points>
+          <Points>
+            <X>442.5</X>
+            <Y>137.5</Y>
+          </Points>
+          <Points>
+            <X>442.5</X>
+            <Y>195</Y>
+          </Points>
+          <Points>
+            <X>740</X>
+            <Y>195</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB4.CNF" Destination="FB1.REQ" dx1="85.0625" dx2="70" dy="-318">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.CNF" Destination="FB2.REQ">
+        <Points>
+          <Points>
+            <X>921.8281</X>
+            <Y>210.036469</Y>
+          </Points>
+          <Points>
+            <X>932.5</X>
+            <Y>210.036469</Y>
+          </Points>
+          <Points>
+            <X>932.5</X>
+            <Y>152.536469</Y>
+          </Points>
+          <Points>
+            <X>592.5</X>
+            <Y>152.536469</Y>
+          </Points>
+          <Points>
+            <X>592.5</X>
+            <Y>297.536469</Y>
+          </Points>
+          <Points>
+            <X>292.5</X>
+            <Y>297.536469</Y>
+          </Points>
+          <Points>
+            <X>292.5</X>
+            <Y>420.036469</Y>
+          </Points>
+          <Points>
+            <X>310</X>
+            <Y>420.036469</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="to_magazine" Destination="FB2.to_mgz" dx1="15.875" />
+      <Connection Source="to_client" Destination="FB2.to_next" dx1="41.02087" />
+      <Connection Source="FB2.at_mgz" Destination="at_magazine" dx1="40" />
+      <Connection Source="FB2.at_next" Destination="at_client" dx1="40" />
+      <Connection Source="FB1.Retracted" Destination="retracted" dx1="48.75012" />
+      <Connection Source="FB1.Extended" Destination="extended" dx1="48.75012" />
+      <Connection Source="FB1.Pos" Destination="FB4.PosPusher" dx1="1177.5">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.angle" Destination="FB4.AngleTransferUnit" dx1="1112.604">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.vmon" Destination="vac_on" dx1="322.6875" />
+      <Connection Source="FB4.empty" Destination="empty" dx1="302.6875" />
+      <Connection Source="FB2.angle" Destination="IThis.AngleTransUnit" dx1="1112.604">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.Pos" Destination="IThis.PosPusher" dx1="1177.5">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp6Y" Destination="IThis.wp6Y" dx1="87.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp6X" Destination="IThis.wp6X" dx1="107.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp5Y" Destination="IThis.wp5Y" dx1="127.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp5X" Destination="IThis.wp5X" dx1="147.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp4Y" Destination="IThis.wp4Y" dx1="167.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp4X" Destination="IThis.wp4X" dx1="187.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp3Y" Destination="IThis.wp3Y" dx1="207.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp3X" Destination="IThis.wp3X" dx1="227.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp2Y" Destination="IThis.wp2Y" dx1="247.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp2X" Destination="IThis.wp2X" dx1="267.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp1Y" Destination="IThis.wp1Y" dx1="287.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.wp1X" Destination="IThis.wp1X" dx1="307.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.StopPusher" Destination="FB1.Stop">
+        <Points>
+          <Points>
+            <X>921.8281</X>
+            <Y>469.536469</Y>
+          </Points>
+          <Points>
+            <X>930</X>
+            <Y>469.536469</Y>
+          </Points>
+          <Points>
+            <X>930</X>
+            <Y>500.036469</Y>
+          </Points>
+          <Points>
+            <X>638.7656</X>
+            <Y>500.036469</Y>
+          </Points>
+          <Points>
+            <X>638.7656</X>
+            <Y>305.036469</Y>
+          </Points>
+          <Points>
+            <X>296.265625</X>
+            <Y>305.036469</Y>
+          </Points>
+          <Points>
+            <X>296.265625</X>
+            <Y>259.536469</Y>
+          </Points>
+          <Points>
+            <X>310</X>
+            <Y>259.536469</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.vmon" Destination="IThis.vcmON" dx1="592.6875">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.empty" Destination="IThis.mgzEmpty" dx1="532.6875">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="retract" Destination="FB1.Retract" dx1="239.3334" />
+      <Connection Source="vaccuum_off" Destination="FB4.VcmOFF" />
+      <Connection Source="vaccuum_on" Destination="FB4.VcmON" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

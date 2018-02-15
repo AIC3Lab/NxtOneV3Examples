@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="CA19EBB92EBCDF67" Name="TrueUntil" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/9/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="TRIGGER" Comment="Initialization Request" />
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="in_position" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="TO_POSITION" Comment="Initialization Confirm" />
+      <Event Name="STOP" Comment="Execution Confirmation" />
+      <Event Name="DONE" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="in_position" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="912.3698" y="273.9831" />
+      <ECState Name="STOP" x="413.7143" y="581.7145">
+        <ECAction Output="STOP" />
+        <ECAction Output="DONE" />
+      </ECState>
+      <ECState Name="GOTO" x="1351.429" y="603.4286">
+        <ECAction Output="TO_POSITION" />
+      </ECState>
+      <ECTransition Source="GOTO" Destination="STOP" Condition="REQ AND in_position" x="950.7837" y="884.9275">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="272.6161,241.686,212.304,240.8067" />
+      </ECTransition>
+      <ECTransition Source="STOP" Destination="START" Condition="1" x="597.2791" y="429.0044">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="132.4128,116.9081,160.8324,97.78671" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="GOTO" Condition="TRIGGER" x="1281.693" y="444.6833">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="315.523,101.8635,339.2913,121.7072" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="37F8E71C3837F071" Name="ButtonsPanel" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Andrei" Date="7/13/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="start_led" />
+        <With Var="reset_led" />
+        <With Var="ack_led" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="start_led" />
+        <With Var="reset_led" />
+        <With Var="ack_led" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="start" />
+        <With Var="reset" />
+        <With Var="ack" />
+        <With Var="manual" />
+        <With Var="stop" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="start" />
+        <With Var="reset" />
+        <With Var="ack" />
+        <With Var="manual" />
+        <With Var="stop" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="start_led" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="reset_led" Type="BOOL" />
+      <VarDeclaration Name="ack_led" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="start" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="reset" Type="BOOL" />
+      <VarDeclaration Name="ack" Type="BOOL" />
+      <VarDeclaration Name="manual" Type="BOOL" />
+      <VarDeclaration Name="stop" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="ButtonsPanel_HMI" x="1000" y="400" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>75</X>
+        <Y>102.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>75</X>
+        <Y>117.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="start_led">
+      <Position>
+        <X>75</X>
+        <Y>182.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="reset_led">
+      <Position>
+        <X>75</X>
+        <Y>197.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="ack_led">
+      <Position>
+        <X>75</X>
+        <Y>212.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>425</X>
+        <Y>102.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>425</X>
+        <Y>117.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="start">
+      <Position>
+        <X>425</X>
+        <Y>197.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="reset">
+      <Position>
+        <X>425</X>
+        <Y>212.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="ack">
+      <Position>
+        <X>425</X>
+        <Y>227.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="manual">
+      <Position>
+        <X>437.072876</X>
+        <Y>242.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="stop">
+      <Position>
+        <X>425</X>
+        <Y>257.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="40.83337" />
+      <Connection Source="REQ" Destination="IThis.REQ" dx1="48.95837" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="46.10425" />
+      <Connection Source="IThis.CNF" Destination="CNF" dx1="46.10425" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="start_led" Destination="IThis.start_led" dx1="40" />
+      <Connection Source="reset_led" Destination="IThis.reset_led" dx1="44.08337" />
+      <Connection Source="ack_led" Destination="IThis.ack_led" dx1="40" />
+      <Connection Source="IThis.start" Destination="start" dx1="46.10425" />
+      <Connection Source="IThis.reset" Destination="reset" dx1="106.1042" />
+      <Connection Source="IThis.ack" Destination="ack" dx1="86.10425" />
+      <Connection Source="IThis.manual" Destination="manual" dx1="66.10425" />
+      <Connection Source="IThis.stop" Destination="stop" dx1="46.10425" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

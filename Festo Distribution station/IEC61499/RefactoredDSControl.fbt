@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="FA3CAF3BBCD90618" Name="RefactoredDSControl" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/9/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="retracted" />
+        <With Var="extended" />
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="empty" />
+        <With Var="vac_on" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="retracted" />
+        <With Var="extended" />
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="empty" />
+        <With Var="vac_on" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="vaccuum_on" />
+        <With Var="vaccuum_off" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+        <With Var="extend" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="vaccuum_on" />
+        <With Var="vaccuum_off" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+        <With Var="extend" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="retracted" Type="BOOL" />
+      <VarDeclaration Name="extended" Type="BOOL" />
+      <VarDeclaration Name="at_magazine" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="at_client" Type="BOOL" />
+      <VarDeclaration Name="empty" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="vac_on" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="vaccuum_on" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="vaccuum_off" Type="BOOL" />
+      <VarDeclaration Name="to_magazine" Type="BOOL" />
+      <VarDeclaration Name="to_client" Type="BOOL" />
+      <VarDeclaration Name="extend" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="RAC" Type="RefactorRotatingArmControl" x="1440" y="660" Namespace="Main" />
+    <FB ID="2" Name="SMM" Type="StackMagazineControl" x="740" y="660" Namespace="Main" />
+    <FB ID="3" Name="MergeCNF" Type="E_MERGE" x="2260" y="480" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="240" y="672" Type="Event" />
+    <Input Name="REQ" x="240" y="732" Type="Event" />
+    <Input Name="at_magazine" x="640" y="1232" Type="Data" />
+    <Input Name="at_client" x="640" y="1292" Type="Data" />
+    <Input Name="empty" x="180" y="992" Type="Data" />
+    <Input Name="retracted" x="180" y="1052" Type="Data" />
+    <Input Name="extended" x="180" y="1112" Type="Data" />
+    <Input Name="vac_on" x="636.4271" y="1352" Type="Data" />
+    <Output Name="INITO" x="2380" y="852" Type="Event" />
+    <Output Name="CNF" x="2620" y="492" Type="Event" />
+    <Output Name="vaccuum_on" x="2160" y="992" Type="Data" />
+    <Output Name="vaccuum_off" x="2160" y="1052" Type="Data" />
+    <Output Name="to_magazine" x="2160" y="1112" Type="Data" />
+    <Output Name="to_client" x="2240" y="1172" Type="Data" />
+    <Output Name="extend" x="1380" y="432" Type="Data" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="RAC.RESET">
+        <Points>
+          <Points>
+            <X>122.145828</X>
+            <Y>175</Y>
+          </Points>
+          <Points>
+            <X>122.5</X>
+            <Y>175</Y>
+          </Points>
+          <Points>
+            <X>122.5</X>
+            <Y>134.5</Y>
+          </Points>
+          <Points>
+            <X>320</X>
+            <Y>134.5</Y>
+          </Points>
+          <Points>
+            <X>320</X>
+            <Y>175</Y>
+          </Points>
+          <Points>
+            <X>355</X>
+            <Y>175</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="REQ" Destination="SMM.REQ" />
+      <Connection Source="SMM.CNF" Destination="MergeCNF.EI1" dx1="70.25">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="RAC.CNF" Destination="MergeCNF.EI2" dx1="51.24976">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="MergeCNF.EO" Destination="CNF" />
+      <Connection Source="REQ" Destination="RAC.REQ">
+        <Points>
+          <Points>
+            <X>125.114578</X>
+            <Y>190</Y>
+          </Points>
+          <Points>
+            <X>135</X>
+            <Y>190</Y>
+          </Points>
+          <Points>
+            <X>135</X>
+            <Y>114.5</Y>
+          </Points>
+          <Points>
+            <X>330</X>
+            <Y>114.5</Y>
+          </Points>
+          <Points>
+            <X>330</X>
+            <Y>190</Y>
+          </Points>
+          <Points>
+            <X>355</X>
+            <Y>190</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="SMM.PICK" Destination="RAC.PICK" />
+      <Connection Source="RAC.NEXT" Destination="SMM.NEXT" dx1="40" dx2="30" dy="-230" />
+      <Connection Source="RAC.RESET_CNF" Destination="SMM.INIT" dx1="111.2498" dx2="105.125" dy="-360">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="SMM.INITO" Destination="INITO">
+        <Points>
+          <Points>
+            <X>307.4375</X>
+            <Y>175</Y>
+          </Points>
+          <Points>
+            <X>285</X>
+            <Y>175</Y>
+          </Points>
+          <Points>
+            <X>285</X>
+            <Y>130</Y>
+          </Points>
+          <Points>
+            <X>530</X>
+            <Y>130</Y>
+          </Points>
+          <Points>
+            <X>530</X>
+            <Y>220</Y>
+          </Points>
+          <Points>
+            <X>595</X>
+            <Y>220</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="empty" Destination="SMM.empty" />
+      <Connection Source="retracted" Destination="SMM.retracted" />
+      <Connection Source="extended" Destination="SMM.extended" />
+      <Connection Source="at_magazine" Destination="RAC.at_magazine" dx1="145.875">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="at_client" Destination="RAC.at_client" dx1="251.0209">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="RAC.to_magazine" Destination="to_magazine" />
+      <Connection Source="RAC.to_client" Destination="to_client" />
+      <Connection Source="SMM.retract" Destination="extend" dx1="110" />
+      <Connection Source="vac_on" Destination="RAC.vac_on" dx1="186.427" />
+      <Connection Source="RAC.vaccuum_on" Destination="vaccuum_on" />
+      <Connection Source="RAC.vaccuum_off" Destination="vaccuum_off" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

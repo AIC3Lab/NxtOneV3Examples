@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="ACE8772DC2901DE" Name="RotatingArmReset" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="4" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/11/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="RESET" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="to_client" />
+        <With Var="to_magazine" />
+        <With Var="vacuum_on" />
+        <With Var="vacuum_off" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="to_client" Type="BOOL" />
+      <VarDeclaration Name="to_magazine" Type="BOOL" />
+      <VarDeclaration Name="vacuum_on" Type="BOOL" />
+      <VarDeclaration Name="vacuum_off" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="ToClient" Type="E_SR" x="880" y="380" Namespace="IEC61499.Standard" />
+    <FB ID="2" Name="ToMagazine" Type="E_SR" x="1400" y="380" Namespace="IEC61499.Standard" />
+    <FB ID="3" Name="VacuumOff" Type="E_SR" x="1420" y="1040" Namespace="IEC61499.Standard" />
+    <FB ID="4" Name="VacuumOn" Type="E_SR" x="900" y="1040" Namespace="IEC61499.Standard" />
+    <Input Name="RESET" x="480" y="392" Type="Event" />
+    <Output Name="CNF" x="1740" y="1052" Type="Event" />
+    <Output Name="to_client" x="980" y="792" Type="Data" />
+    <Output Name="to_magazine" x="1560" y="792" Type="Data" />
+    <Output Name="vacuum_on" x="1560" y="852" Type="Data" />
+    <Output Name="vacuum_off" x="980" y="852" Type="Data" />
+    <EventConnections>
+      <Connection Source="RESET" Destination="ToClient.S" />
+      <Connection Source="ToClient.EO" Destination="ToMagazine.R" dx1="139.1771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VacuumOff.EO" Destination="CNF" />
+      <Connection Source="ToMagazine.EO" Destination="VacuumOn.R" dx1="68.35413" dx2="30" dy="520">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VacuumOn.EO" Destination="VacuumOff.S" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="ToClient.Q" Destination="to_client" dx1="48.35413" dx2="220" dy="100">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ToMagazine.Q" Destination="to_magazine" dx1="48.35413" dx2="30" dy="90" />
+      <Connection Source="VacuumOff.Q" Destination="vacuum_on" dx1="70" dx2="30" dy="-370" />
+      <Connection Source="VacuumOn.Q" Destination="vacuum_off" dx1="70" dx2="30" dy="-370" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DeployInformation ProjectName="Festo Distribution station" ProjectGuid="{3B202251-04B1-4DF9-929E-79AE1EC29A6D}" System="System" DeviceName="DS">
+  <DeviceProperties>
+    <Property Name="MacAddress" Value="" />
+    <Property Name="IPAddress" Value="127.0.0.1" />
+    <ComplexProperty Name="Ports">
+      <Property Name="Deploy" Value="61499" />
+      <Property Name="HMI" Value="61498" />
+      <Property Name="Watch" Value="61497" />
+      <Property Name="Archive" Value="61496" />
+      <Property Name="LocalArchive" Value="8180" />
+    </ComplexProperty>
+    <GroupProperty Name="LocalArchive" Enabled="false">
+      <Property Name="Values" Value="true" />
+      <Property Name="Alarms" Value="false" />
+      <Property Name="Journal" Value="false" />
+      <Property Name="UserId" Value="localdb" />
+      <Property Name="Password" Value="localdb" />
+      <Property Name="ConnectTimeout" Value="5000" />
+      <Property Name="ConnectRetryTime" Value="15000" />
+      <Property Name="ServerTimeout" Value="30000" />
+      <Property Name="DataChunk" Value="100" />
+      <Property Name="WaitPollData" Value="100" />
+      <Property Name="WaitPollNoData" Value="5000" />
+    </GroupProperty>
+    <Property Name="Login" Value="Yes" />
+  </DeviceProperties>
+  <UsedDll>IEC61499.exe|Runtime.Base.dll</UsedDll>
+  <FileName>C:\Users\Sandeep Patil\Documents\NxtOneV3Examples\Festo Distribution station\IEC61499\System\System.sys</FileName>
+  <BuildTime>2018-02-15 10:00:51Z</BuildTime>
+  <StudioVersion>IEC 61499 IDE, Gaia release-3.0.0 g2193 6473910 Thu Mar 30 22:39:18 2017</StudioVersion>
+  <StudioInfo>V1;A366F4E6A6E5CA6DC44C0F399BF8814490793D3080F5DB64C4285E67C6AC8A33B5730D1B93F1DF35B56F023093BCF4679D7F4E14C4AE8939C2560736B1F3D77898741768A7F2D37E9C681D219BE59A679F3A22209EF9DB33B5730D109FFDD364C46C40238BFDCE6390742E3986E9947B9C213E279DF6DF6B8D540F3897A1FC6D8A6E0175B6F5C97C8B730C2086F5D566D9691A3486F5D566C24A1C3A98F9D97CBE6F0731CFE7894ACB2A5C67C7AD9738CD585F78C6D8FC31D4235C6CB7B18D31B85F5F10B1AE8349CF5E136E;</StudioInfo>
+  <Actions>
+    <Action Method="normal" Context="deploy" Priority="700" Operation="copy" FileType="bootproject">
+      <LocalFile>System.DS.drq.xml</LocalFile>
+    </Action>
+  </Actions>
+  <RequestCollectionFileName>System.DS.drq.xml</RequestCollectionFileName>
+  <DeviceFileName>System.DS.sysdev.xml</DeviceFileName>
+  <DependenciesFileName>System.DS.fbdep.txt</DependenciesFileName>
+</DeployInformation>

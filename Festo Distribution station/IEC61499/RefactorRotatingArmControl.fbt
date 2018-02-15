@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="16BAE8B626B2AEBC" Name="RefactorRotatingArmControl" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="12" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Sandeep Patil" Date="2/12/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="RESET" Comment="Initialization Request">
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="vac_on" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="at_magazine" />
+        <With Var="at_client" />
+        <With Var="vac_on" />
+      </Event>
+      <Event Name="PICK" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="RESET_CNF" Comment="Initialization Confirm">
+        <With Var="vaccuum_on" />
+        <With Var="vaccuum_off" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="vaccuum_on" />
+        <With Var="vaccuum_off" />
+        <With Var="to_magazine" />
+        <With Var="to_client" />
+      </Event>
+      <Event Name="NEXT" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="at_magazine" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="at_client" Type="BOOL" />
+      <VarDeclaration Name="vac_on" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="vaccuum_on" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="vaccuum_off" Type="BOOL" />
+      <VarDeclaration Name="to_magazine" Type="BOOL" />
+      <VarDeclaration Name="to_client" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="go_to_magazine" Type="TrueUntil" x="2120" y="760" Namespace="Main" />
+    <FB ID="2" Name="turn_vaccuum_on" Type="TrueUntil" x="1300" y="1260" Namespace="Main" />
+    <FB ID="3" Name="go_to_client" Type="TrueUntil" x="2140" y="1600" Namespace="Main" />
+    <FB ID="4" Name="turn_vaccuum_off" Type="TrueUntil" x="1900" y="2140" Namespace="Main" />
+    <FB ID="5" Name="not_vac_on" Type="NOT_42C76073DCEB1A7A" x="1300" y="2220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=1;OUT${CNT}:BOOL" />
+    </FB>
+    <FB ID="7" Name="sr_vaccuum_on" Type="E_SR" x="3120" y="1300" Namespace="IEC61499.Standard" />
+    <FB ID="8" Name="sr_vaccuum_off" Type="E_SR" x="3120" y="2220" Namespace="IEC61499.Standard" />
+    <FB ID="9" Name="sr_to_magazine" Type="E_SR" x="3140" y="820" Namespace="IEC61499.Standard" />
+    <FB ID="10" Name="sr_to_client" Type="E_SR" x="3120" y="1760" Namespace="IEC61499.Standard" />
+    <FB ID="11" Name="FB4" Type="EV_MERGE" x="3580" y="600" Namespace="Main" />
+    <FB ID="12" Name="reset" Type="ResetARM" x="800" y="220" Namespace="Main" />
+    <Input Name="RESET" x="380" y="232" Type="Event" />
+    <Input Name="REQ" x="640" y="1152" Type="Event" />
+    <Input Name="PICK" x="1600" y="772" Type="Event" />
+    <Input Name="at_magazine" x="1380" y="1092" Type="Data" />
+    <Input Name="at_client" x="580" y="1992" Type="Data" />
+    <Input Name="vac_on" x="700" y="1872" Type="Data" />
+    <Output Name="RESET_CNF" x="2060" y="252" Type="Event" />
+    <Output Name="CNF" x="3920" y="612" Type="Event" />
+    <Output Name="NEXT" x="2600" y="2272" Type="Event" />
+    <Output Name="vaccuum_on" x="3580" y="1572" Type="Data" />
+    <Output Name="vaccuum_off" x="3480" y="2492" Type="Data" />
+    <Output Name="to_magazine" x="3540" y="1092" Type="Data" />
+    <Output Name="to_client" x="3520" y="2032" Type="Data" />
+    <EventConnections>
+      <Connection Source="PICK" Destination="go_to_magazine.TRIGGER" />
+      <Connection Source="go_to_magazine.DONE" Destination="turn_vaccuum_on.TRIGGER">
+        <Points>
+          <Points>
+            <X>687.807251</X>
+            <Y>230</Y>
+          </Points>
+          <Points>
+            <X>697.807251</X>
+            <Y>230</Y>
+          </Points>
+          <Points>
+            <X>697.807251</X>
+            <Y>302.5</Y>
+          </Points>
+          <Points>
+            <X>517.5</X>
+            <Y>302.5</Y>
+          </Points>
+          <Points>
+            <X>517.5</X>
+            <Y>297.5</Y>
+          </Points>
+          <Points>
+            <X>312.5</X>
+            <Y>297.5</Y>
+          </Points>
+          <Points>
+            <X>312.5</X>
+            <Y>325</Y>
+          </Points>
+          <Points>
+            <X>320</X>
+            <Y>325</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="turn_vaccuum_on.DONE" Destination="go_to_client.TRIGGER" dx1="40" />
+      <Connection Source="go_to_client.DONE" Destination="turn_vaccuum_off.TRIGGER" dx1="40" dx2="30" dy="290" />
+      <Connection Source="not_vac_on.CNF" Destination="turn_vaccuum_off.REQ" dx1="50" />
+      <Connection Source="turn_vaccuum_off.DONE" Destination="NEXT" />
+      <Connection Source="REQ" Destination="go_to_magazine.REQ" dx1="49.54175" />
+      <Connection Source="REQ" Destination="turn_vaccuum_on.REQ" dx1="49.54175" />
+      <Connection Source="REQ" Destination="go_to_client.REQ" dx1="49.54175" />
+      <Connection Source="REQ" Destination="not_vac_on.REQ" dx1="229.5417" />
+      <Connection Source="turn_vaccuum_on.TO_POSITION" Destination="sr_vaccuum_on.S" dx1="60" />
+      <Connection Source="turn_vaccuum_on.STOP" Destination="sr_vaccuum_on.R" dx1="60" />
+      <Connection Source="go_to_magazine.TO_POSITION" Destination="sr_to_magazine.S" dx1="80" />
+      <Connection Source="go_to_magazine.STOP" Destination="sr_to_magazine.R" dx1="60" />
+      <Connection Source="go_to_client.TO_POSITION" Destination="sr_to_client.S" dx1="208.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="go_to_client.STOP" Destination="sr_to_client.R" dx1="88.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="turn_vaccuum_off.TO_POSITION" Destination="sr_vaccuum_off.S" dx1="378.771" />
+      <Connection Source="turn_vaccuum_off.STOP" Destination="sr_vaccuum_off.R" dx1="378.771" />
+      <Connection Source="RESET" Destination="reset.RESET" />
+      <Connection Source="reset.CNF" Destination="RESET_CNF" dx1="40" />
+      <Connection Source="sr_to_magazine.EO" Destination="FB4.E1" dx1="50" />
+      <Connection Source="sr_vaccuum_on.EO" Destination="FB4.E2" dx1="98.35425">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="sr_to_client.EO" Destination="FB4.E3" dx1="138.3542">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="sr_vaccuum_off.EO" Destination="FB4.E4" dx1="178.3542">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.EO" Destination="CNF" />
+      <Connection Source="reset.R_GO_TO_MAG" Destination="sr_to_magazine.R">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="reset.S_GO_TO_CLIENT" Destination="sr_to_client.S">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="reset.R_VACUUM_ON" Destination="sr_vaccuum_on.R">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="reset.S_VACUUM_OFF" Destination="sr_vaccuum_off.S">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="reset.R_GO_TO_CLIENT" Destination="sr_to_client.R">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="reset.R_VACUUM_OFF" Destination="sr_vaccuum_off.R">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="REQ" Destination="reset.REQ" dx1="49.54169" dx2="30" dy="-50" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="vac_on" Destination="turn_vaccuum_on.in_position" dx1="42.85425" />
+      <Connection Source="at_client" Destination="go_to_client.in_position" dx1="191.0209">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="at_magazine" Destination="go_to_magazine.in_position" />
+      <Connection Source="vac_on" Destination="not_vac_on.IN1" dx1="42.85425" />
+      <Connection Source="not_vac_on.OUT1" Destination="turn_vaccuum_off.in_position" dx1="43.75" />
+      <Connection Source="sr_vaccuum_on.Q" Destination="vaccuum_on" />
+      <Connection Source="sr_vaccuum_off.Q" Destination="vaccuum_off" />
+      <Connection Source="sr_to_magazine.Q" Destination="to_magazine" />
+      <Connection Source="sr_to_client.Q" Destination="to_client" />
+      <Connection Source="vac_on" Destination="reset.vacuum_on" dx1="42.85425" dx2="30" dy="-770" />
+      <Connection Source="at_client" Destination="reset.at_client" dx1="191.0209" dx2="40" dy="-960">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

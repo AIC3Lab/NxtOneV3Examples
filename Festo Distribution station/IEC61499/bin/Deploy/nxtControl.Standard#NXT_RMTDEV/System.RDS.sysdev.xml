@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE System SYSTEM "../LibraryElement.dtd">
+<System Name="System">
+  <Device ID="87CD075D4B2C742A" Name="RDS" Type="NXT_RMTDEV" x="571.3125" y="2147.511" Namespace="nxtControl.Standard">
+    <Parameter Name="MGR_ID" Value="&quot;127.0.0.1:61499&quot;" />
+    <Parameter Name="HMI_ID" Value="&quot;127.0.0.1:61498&quot;" />
+    <Parameter Name="WATCH_ID" Value="&quot;127.0.0.1:61497&quot;" />
+    <Resource ID="9C1AD317E1B50226" Name="RES0" Type="EMB_RES_ENH" Namespace="Runtime.Management">
+      <FBNetwork>
+        <FB ID="EEEBB2DCB4F6FA0F" Name="PlantModel" Type="Model" x="1240" y="580" Namespace="Main" />
+        <FB ID="6EAA621B0D23B0F2" Name="Control" Type="RefactoredDSControl" x="2280" y="580" Namespace="Main" />
+        <EventConnections>
+          <Connection Source="PlantModel.INITO" Destination="Control.INIT" />
+          <Connection Source="PlantModel.CNF" Destination="Control.REQ" />
+          <Connection Source="START.COLD" Destination="PlantModel.INIT" dx1="40" />
+          <Connection Source="Control.CNF" Destination="PlantModel.REQ" dx1="41.25" dx2="30" dy="-170" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PlantModel.retracted" Destination="Control.retracted" />
+          <Connection Source="PlantModel.extended" Destination="Control.extended" />
+          <Connection Source="PlantModel.at_magazine" Destination="Control.at_magazine" />
+          <Connection Source="PlantModel.at_client" Destination="Control.at_client" />
+          <Connection Source="PlantModel.empty" Destination="Control.empty" />
+          <Connection Source="PlantModel.vac_on" Destination="Control.vac_on" />
+          <Connection Source="Control.vaccuum_on" Destination="PlantModel.vaccuum_on" dx1="41.25" dx2="30" dy="-370" />
+          <Connection Source="Control.vaccuum_off" Destination="PlantModel.vaccuum_off" dx1="111.25" dx2="120" dy="420">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Control.to_magazine" Destination="PlantModel.to_magazine" dx1="41.25" dx2="30" dy="270" />
+          <Connection Source="Control.to_client" Destination="PlantModel.to_client" dx1="41.25" dx2="30" dy="210" />
+          <Connection Source="Control.extend" Destination="PlantModel.retract" dx1="41.25" dx2="30" dy="150" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+</System>

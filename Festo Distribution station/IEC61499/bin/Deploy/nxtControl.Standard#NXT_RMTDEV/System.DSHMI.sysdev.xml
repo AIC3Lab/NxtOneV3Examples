@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE System SYSTEM "../LibraryElement.dtd">
+<System Name="System">
+  <Device ID="2371D82C743A513C" Name="DSHMI" Type="NXT_RMTDEV" x="726.5104" y="699.2191" Namespace="nxtControl.Standard">
+    <Resource ID="28A29A086E15ACB3" Name="RES0" Type="EMB_RES_ENH" x="1020" y="1160" Namespace="Runtime.Management">
+      <Parameter Name="PRIO" Value="0" />
+      <FBNetwork>
+        <FB ID="4CA5A913391F0594" Name="DistributionStation" Type="Model" x="1820" y="660" Namespace="Main" />
+        <FB ID="12C66C8EABBB8776" Name="TestPanel" Type="Test" x="980" y="660" Namespace="Main" />
+        <FB ID="D198A546C610D835" Name="PanelButtons" Type="ButtonsPanel" x="3660" y="680" Namespace="Main" />
+        <EventConnections>
+          <Connection Source="TestPanel.INITO" Destination="DistributionStation.INIT" />
+          <Connection Source="TestPanel.CNF" Destination="DistributionStation.REQ" />
+          <Connection Source="START.COLD" Destination="TestPanel.INIT" dx1="40" />
+          <Connection Source="START.WARM" Destination="TestPanel.INIT" dx1="40" />
+          <Connection Source="DistributionStation.INITO" Destination="PanelButtons.INIT" dx1="41.25" />
+          <Connection Source="PanelButtons.CNF" Destination="PanelButtons.REQ" dx1="40" dx2="40" dy="510" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TestPanel.to_mgz" Destination="DistributionStation.to_magazine" dx1="100.2084" />
+          <Connection Source="TestPanel.to_next" Destination="DistributionStation.to_client" dx1="80.20837" />
+          <Connection Source="TestPanel.vcm_on" Destination="DistributionStation.vaccuum_off" dx1="150" />
+          <Connection Source="TestPanel.vm_off" Destination="DistributionStation.vaccuum_on" dx1="170" />
+          <Connection Source="TestPanel.Retract" Destination="DistributionStation.retract" dx1="120.2084" />
+          <Connection Source="PanelButtons.start" Destination="PanelButtons.start_led" dx1="40" dx2="40" dy="310" />
+          <Connection Source="PanelButtons.reset" Destination="PanelButtons.reset_led" dx1="40" dx2="40" dy="250" />
+          <Connection Source="PanelButtons.ack" Destination="PanelButtons.ack_led" dx1="40" dx2="40" dy="190" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+</System>

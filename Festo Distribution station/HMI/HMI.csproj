@@ -1,0 +1,161 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{6146080D-4C5B-4009-BBCB-FE606BE46C03}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HMI</RootNamespace>
+    <AssemblyName>HMI</AssemblyName>
+    <NxtVersion>3.0.0.0</NxtVersion>
+    <HMILibraries>HMIBaseSymbols:</HMILibraries>
+    <Theme>Default:Default</Theme>
+    <ProjectType>HMI</ProjectType>
+    <Platform Condition=" '$(Platform)' == '' ">Windows</Platform>
+    <CanvasSize>1280,900,1280,980,Default,True,140,30</CanvasSize>
+    <CanvasLookAndFeel>Theme</CanvasLookAndFeel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\$(Platform)\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\$(Platform)\Release</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Windows' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ButtonsPanel\ButtonsPanel.def.cs" />
+    <Compile Include="ButtonsPanel\ButtonsPanel.event.cs" />
+    <Compile Include="ButtonsPanel\ButtonsPanel_sDefault.cnv.cs" />
+    <Compile Include="ButtonsPanel\ButtonsPanel_sDefault.cnv.Designer.cs">
+      <DependentUpon>ButtonsPanel_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DistributingStationWithHMI.cnv.cs">
+      <Canvas>true</Canvas>
+    </Compile>
+    <Compile Include="DistributingStationWithHMI.cnv.Designer.cs">
+      <DependentUpon>DistributingStationWithHMI.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Colors\ProjectColors.cs" />
+    <Compile Include="Colors\ProjectDrawingObjects.cs" />
+    <Compile Include="DistributingStation.cnv.cs">
+      <Canvas>true</Canvas>
+    </Compile>
+    <Compile Include="DistributingStation.cnv.Designer.cs">
+      <DependentUpon>DistributingStation.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphic1.cnv.cs">
+      <Graphic>true</Graphic>
+    </Compile>
+    <Compile Include="Graphic1.cnv.Designer.cs">
+      <DependentUpon>Graphic1.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model.def.cs" />
+    <Compile Include="Model\Model.event.cs" />
+    <Compile Include="Model\Model_sDefault.cnv.cs" />
+    <Compile Include="Model\Model_sDefault.cnv.Designer.cs">
+      <DependentUpon>Model_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RefactoredDistributionStation.cnv.cs">
+      <Canvas>true</Canvas>
+    </Compile>
+    <Compile Include="RefactoredDistributionStation.cnv.Designer.cs">
+      <DependentUpon>RefactoredDistributionStation.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartCanvas_3.cnv.cs" />
+    <Compile Include="StartCanvas_3.cnv.Designer.cs">
+      <DependentUpon>StartCanvas_3.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Test.def.cs" />
+    <Compile Include="Test\Test.event.cs" />
+    <Compile Include="Test\Test_sDefault.cnv.cs" />
+    <Compile Include="Test\Test_sDefault.cnv.Designer.cs">
+      <DependentUpon>Test_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <None Include="Alarms\AlarmClasses.xml" />
+    <None Include="ButtonsPanel\ButtonsPanel.Design.resx" />
+    <None Include="Colors\Default.color.theme" />
+    <None Include="Colors\Default.do.theme" />
+    <None Include="Colors\ProjectColors.xml" />
+    <None Include="Colors\ProjectDrawingObjects.xml" />
+    <None Include="ImageStorage\ImageStorage.xml" />
+    <None Include="Model\Model.Design.resx" />
+    <None Include="Test\Test.Design.resx" />
+    <EmbeddedResource Include="Alarms\AlarmClasses.xml" />
+    <EmbeddedResource Include="Alarms\SystemAlarmClasses.xml" />
+    <EmbeddedResource Include="ButtonsPanel\ButtonsPanel_sDefault.cnv.resx">
+      <DependentUpon>ButtonsPanel_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ButtonsPanel\ButtonsPanel_sDefault.cnv.xml">
+      <DependentUpon>ButtonsPanel_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DistributingStationWithHMI.cnv.resx">
+      <DependentUpon>DistributingStationWithHMI.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configurations\HistoryTrend.xml" />
+    <EmbeddedResource Include="Configurations\Journalling.xml" />
+    <EmbeddedResource Include="Configurations\TagValueEditor.xml" />
+    <EmbeddedResource Include="DistributingStation.cnv.resx">
+      <DependentUpon>DistributingStation.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphic1.cnv.resx">
+      <DependentUpon>Graphic1.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Model_sDefault.cnv.resx">
+      <DependentUpon>Model_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Model_sDefault.cnv.xml">
+      <DependentUpon>Model_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RefactoredDistributionStation.cnv.resx">
+      <DependentUpon>RefactoredDistributionStation.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartCanvas_3.cnv.resx">
+      <DependentUpon>StartCanvas_3.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test\Test_sDefault.cnv.resx">
+      <DependentUpon>Test_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test\Test_sDefault.cnv.xml">
+      <DependentUpon>Test_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CommunicationProfile">
+      <HintPath>CommunicationProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="HMIBaseSymbols">
+      <HintPath>HMIBaseSymbols.dll</HintPath>
+    </Reference>
+    <Reference Include="NxtControl.ComponentModel">
+      <HintPath>NxtControl.ComponentModel.dll</HintPath>
+    </Reference>
+    <Reference Include="NxtControl.GuiFramework">
+      <HintPath>NxtControl.GuiFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(SharpDevelopBinPath)\SharpDevelop.Build.CSharp.targets" />
+</Project>

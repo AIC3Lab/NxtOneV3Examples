@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE System SYSTEM "../LibraryElement.dtd">
+<System Name="System" Comment="System Configuration">
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Andrei" Date="7/8/2016" />
+  <Application ID="A4ABD8400116F035" Name="APP1">
+    <SubAppNetwork>
+      <FB ID="7C38EF8D727ACE1C" Name="DistributionStation" Type="Model" x="1620" y="760" Namespace="Main" />
+      <FB ID="FBBDD73E5898294D" Name="TestPanel" Type="Test" x="920" y="760" Namespace="Main" />
+      <FB ID="632924B8AA1F5FD1" Name="PanelButtons" Type="ButtonsPanel" x="2480" y="760" Namespace="Main" />
+      <EventConnections>
+        <Connection Source="TestPanel.INITO" Destination="DistributionStation.INIT" />
+        <Connection Source="TestPanel.CNF" Destination="DistributionStation.REQ" />
+        <Connection Source="DistributionStation.INITO" Destination="PanelButtons.INIT" />
+        <Connection Source="PanelButtons.CNF" Destination="PanelButtons.REQ" dx1="40.64551" dx2="30" dy="-168" />
+      </EventConnections>
+      <DataConnections>
+        <Connection Source="TestPanel.to_mgz" Destination="DistributionStation.to_magazine" dx1="40.20837" />
+        <Connection Source="TestPanel.to_next" Destination="DistributionStation.to_client" dx1="40.20837" />
+        <Connection Source="TestPanel.vcm_on" Destination="DistributionStation.vaccuum_off" dx1="130" />
+        <Connection Source="TestPanel.vm_off" Destination="DistributionStation.vaccuum_on" dx1="150" />
+        <Connection Source="TestPanel.Retract" Destination="DistributionStation.retract" dx1="120.2084" />
+        <Connection Source="PanelButtons.start" Destination="PanelButtons.start_led" dx1="150.646" dx2="140" dy="402">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="PanelButtons.reset" Destination="PanelButtons.reset_led" dx1="110.646" dx2="80" dy="302">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="PanelButtons.ack" Destination="PanelButtons.ack_led" dx1="40.64551" dx2="30" dy="212" />
+      </DataConnections>
+    </SubAppNetwork>
+  </Application>
+  <Application ID="E4063290A3A42B32" Name="DistributingStation">
+    <SubAppNetwork>
+      <FB ID="EA2556848FACFBE" Name="Plant" Type="Model" x="1340" y="600" Namespace="Main" />
+      <FB ID="C60A36CE5EAED73D" Name="Controrl" Type="Control" x="2240" y="600" Namespace="Main" />
+      <EventConnections>
+        <Connection Source="Plant.INITO" Destination="Controrl.INIT" />
+        <Connection Source="Plant.CNF" Destination="Controrl.REQ" />
+        <Connection Source="Controrl.CNF" Destination="Plant.REQ" dx1="41.25" dx2="30" dy="-170" />
+      </EventConnections>
+      <DataConnections>
+        <Connection Source="Plant.retracted" Destination="Controrl.retracted" />
+        <Connection Source="Plant.extended" Destination="Controrl.extended" />
+        <Connection Source="Plant.at_magazine" Destination="Controrl.at_magazine" />
+        <Connection Source="Plant.at_client" Destination="Controrl.at_client" />
+        <Connection Source="Plant.empty" Destination="Controrl.empty" />
+        <Connection Source="Controrl.vaccuum_on" Destination="Plant.vaccuum_on" dx1="131.25" dx2="120" dy="480">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="Controrl.vaccuum_off" Destination="Plant.vaccuum_off" dx1="111.25" dx2="100" dy="400">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="Controrl.to_magazine" Destination="Plant.to_magazine" dx1="91.25" dx2="80" dy="320">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="Controrl.to_client" Destination="Plant.to_client" dx1="71.25" dx2="60" dy="240">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="Controrl.extend" Destination="Plant.retract" dx1="51.25" dx2="40" dy="160">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="Plant.vac_on" Destination="Controrl.vac_on" />
+      </DataConnections>
+    </SubAppNetwork>
+  </Application>
+  <Application ID="DB0CB10E2C26EF59" Name="RefactoredDS">
+    <SubAppNetwork>
+      <FB ID="4FB71B664B10E8DD" Name="PlantModel" Type="Model" x="1240" y="580" Namespace="Main" />
+      <FB ID="A7E270ED59CAC617" Name="Control" Type="RefactoredDSControl" x="2280" y="580" Namespace="Main" />
+      <EventConnections>
+        <Connection Source="PlantModel.INITO" Destination="Control.INIT" />
+        <Connection Source="PlantModel.CNF" Destination="Control.REQ" />
+        <Connection Source="Control.CNF" Destination="PlantModel.REQ" dx1="41.25" dx2="30" dy="-170" />
+      </EventConnections>
+      <DataConnections>
+        <Connection Source="PlantModel.retracted" Destination="Control.retracted" />
+        <Connection Source="PlantModel.extended" Destination="Control.extended" />
+        <Connection Source="PlantModel.at_magazine" Destination="Control.at_magazine" />
+        <Connection Source="PlantModel.at_client" Destination="Control.at_client" />
+        <Connection Source="PlantModel.empty" Destination="Control.empty" />
+        <Connection Source="PlantModel.vac_on" Destination="Control.vac_on" />
+        <Connection Source="Control.vaccuum_on" Destination="PlantModel.vaccuum_on" dx1="41.25" dx2="30" dy="-370" />
+        <Connection Source="Control.vaccuum_off" Destination="PlantModel.vaccuum_off" dx1="111.25" dx2="120" dy="420">
+          <AvoidsNodes>false</AvoidsNodes>
+        </Connection>
+        <Connection Source="Control.to_magazine" Destination="PlantModel.to_magazine" dx1="41.25" dx2="30" dy="270" />
+        <Connection Source="Control.to_client" Destination="PlantModel.to_client" dx1="41.25" dx2="30" dy="210" />
+        <Connection Source="Control.extend" Destination="PlantModel.retract" dx1="41.25" dx2="30" dy="150" />
+      </DataConnections>
+    </SubAppNetwork>
+  </Application>
+  <Device ID="2371D82C743A513C" Name="DSHMI" Type="NXT_RMTDEV" x="726.5104" y="699.2191" Namespace="nxtControl.Standard">
+    <Resource ID="28A29A086E15ACB3" Name="RES0" Type="EMB_RES_ENH" x="1020" y="1160" Namespace="Runtime.Management">
+      <Parameter Name="PRIO" Value="0" />
+      <FBNetwork>
+        <FB ID="4CA5A913391F0594" Name="DistributionStation" Type="Model" x="1820" y="660" Namespace="Main" />
+        <FB ID="12C66C8EABBB8776" Name="TestPanel" Type="Test" x="980" y="660" Namespace="Main" />
+        <FB ID="D198A546C610D835" Name="PanelButtons" Type="ButtonsPanel" x="3660" y="680" Namespace="Main" />
+        <EventConnections>
+          <Connection Source="TestPanel.INITO" Destination="DistributionStation.INIT" />
+          <Connection Source="TestPanel.CNF" Destination="DistributionStation.REQ" />
+          <Connection Source="START.COLD" Destination="TestPanel.INIT" dx1="40" />
+          <Connection Source="START.WARM" Destination="TestPanel.INIT" dx1="40" />
+          <Connection Source="DistributionStation.INITO" Destination="PanelButtons.INIT" dx1="41.25" />
+          <Connection Source="PanelButtons.CNF" Destination="PanelButtons.REQ" dx1="40" dx2="40" dy="510" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TestPanel.to_mgz" Destination="DistributionStation.to_magazine" dx1="100.2084" />
+          <Connection Source="TestPanel.to_next" Destination="DistributionStation.to_client" dx1="80.20837" />
+          <Connection Source="TestPanel.vcm_on" Destination="DistributionStation.vaccuum_off" dx1="150" />
+          <Connection Source="TestPanel.vm_off" Destination="DistributionStation.vaccuum_on" dx1="170" />
+          <Connection Source="TestPanel.Retract" Destination="DistributionStation.retract" dx1="120.2084" />
+          <Connection Source="PanelButtons.start" Destination="PanelButtons.start_led" dx1="40" dx2="40" dy="310" />
+          <Connection Source="PanelButtons.reset" Destination="PanelButtons.reset_led" dx1="40" dx2="40" dy="250" />
+          <Connection Source="PanelButtons.ack" Destination="PanelButtons.ack_led" dx1="40" dx2="40" dy="190" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+  <Device ID="9168A73C75DA70DA" Name="DS" Type="NXT_RMTDEV" x="571.3125" y="1423.365" Namespace="nxtControl.Standard">
+    <Parameter Name="MGR_ID" Value="&quot;127.0.0.1:61499&quot;" />
+    <Parameter Name="HMI_ID" Value="&quot;127.0.0.1:61498&quot;" />
+    <Parameter Name="WATCH_ID" Value="&quot;127.0.0.1:61497&quot;" />
+    <Resource ID="4335BEF2143F17AE" Name="RES0" Type="EMB_RES_ENH" Namespace="Runtime.Management">
+      <FBNetwork>
+        <FB ID="61262193DAC673A9" Name="Plant" Type="Model" x="1340" y="600" Namespace="Main" />
+        <FB ID="AD5FD50DF7CED1B8" Name="Controrl" Type="Control" x="2240" y="600" Namespace="Main" />
+        <FB ID="975D0D92C0E19DEF" Name="FB1" Type="E_DELAY" x="680" y="520" Namespace="IEC61499.Standard" Loaded="true">
+          <Parameter Name="DT" Value="T#5000ms" />
+        </FB>
+        <EventConnections>
+          <Connection Source="Plant.INITO" Destination="Controrl.INIT" />
+          <Connection Source="Plant.CNF" Destination="Controrl.REQ" />
+          <Connection Source="Controrl.CNF" Destination="Plant.REQ" dx1="41.25" dx2="30" dy="-170" />
+          <Connection Source="START.COLD" Destination="FB1.START" dx1="40" />
+          <Connection Source="FB1.EO" Destination="Plant.INIT" dx1="48.5" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Plant.retracted" Destination="Controrl.retracted" />
+          <Connection Source="Plant.extended" Destination="Controrl.extended" />
+          <Connection Source="Plant.at_magazine" Destination="Controrl.at_magazine" />
+          <Connection Source="Plant.at_client" Destination="Controrl.at_client" />
+          <Connection Source="Plant.empty" Destination="Controrl.empty" />
+          <Connection Source="Controrl.vaccuum_on" Destination="Plant.vaccuum_on" dx1="131.25" dx2="120" dy="480">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Controrl.vaccuum_off" Destination="Plant.vaccuum_off" dx1="111.25" dx2="100" dy="400">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Controrl.to_magazine" Destination="Plant.to_magazine" dx1="91.25" dx2="80" dy="320">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Controrl.to_client" Destination="Plant.to_client" dx1="71.25" dx2="60" dy="240">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Controrl.extend" Destination="Plant.retract" dx1="51.25" dx2="40" dy="160">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Plant.vac_on" Destination="Controrl.vac_on" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+  <Device ID="87CD075D4B2C742A" Name="RDS" Type="NXT_RMTDEV" x="571.3125" y="2147.511" Namespace="nxtControl.Standard">
+    <Parameter Name="MGR_ID" Value="&quot;127.0.0.1:61499&quot;" />
+    <Parameter Name="HMI_ID" Value="&quot;127.0.0.1:61498&quot;" />
+    <Parameter Name="WATCH_ID" Value="&quot;127.0.0.1:61497&quot;" />
+    <Resource ID="9C1AD317E1B50226" Name="RES0" Type="EMB_RES_ENH" Namespace="Runtime.Management">
+      <FBNetwork>
+        <FB ID="EEEBB2DCB4F6FA0F" Name="PlantModel" Type="Model" x="1240" y="580" Namespace="Main" />
+        <FB ID="6EAA621B0D23B0F2" Name="Control" Type="RefactoredDSControl" x="2280" y="580" Namespace="Main" />
+        <EventConnections>
+          <Connection Source="PlantModel.INITO" Destination="Control.INIT" />
+          <Connection Source="PlantModel.CNF" Destination="Control.REQ" />
+          <Connection Source="START.COLD" Destination="PlantModel.INIT" dx1="40" />
+          <Connection Source="Control.CNF" Destination="PlantModel.REQ" dx1="41.25" dx2="30" dy="-170" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PlantModel.retracted" Destination="Control.retracted" />
+          <Connection Source="PlantModel.extended" Destination="Control.extended" />
+          <Connection Source="PlantModel.at_magazine" Destination="Control.at_magazine" />
+          <Connection Source="PlantModel.at_client" Destination="Control.at_client" />
+          <Connection Source="PlantModel.empty" Destination="Control.empty" />
+          <Connection Source="PlantModel.vac_on" Destination="Control.vac_on" />
+          <Connection Source="Control.vaccuum_on" Destination="PlantModel.vaccuum_on" dx1="41.25" dx2="30" dy="-370" />
+          <Connection Source="Control.vaccuum_off" Destination="PlantModel.vaccuum_off" dx1="111.25" dx2="120" dy="420">
+            <AvoidsNodes>false</AvoidsNodes>
+          </Connection>
+          <Connection Source="Control.to_magazine" Destination="PlantModel.to_magazine" dx1="41.25" dx2="30" dy="270" />
+          <Connection Source="Control.to_client" Destination="PlantModel.to_client" dx1="41.25" dx2="30" dy="210" />
+          <Connection Source="Control.extend" Destination="PlantModel.retract" dx1="41.25" dx2="30" dy="150" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+  <Mapping From="APP1.DistributionStation" To="DSHMI.RES0" />
+  <Mapping From="APP1.TestPanel" To="DSHMI.RES0" />
+  <Mapping From="APP1.PanelButtons" To="DSHMI.RES0" />
+  <Mapping From="DistributingStation.Plant" To="DS.RES0" />
+  <Mapping From="DistributingStation.Controrl" To="DS.RES0" />
+  <Mapping From="RefactoredDS.PlantModel" To="RDS.RES0" />
+  <Mapping From="RefactoredDS.Control" To="RDS.RES0" />
+</System>

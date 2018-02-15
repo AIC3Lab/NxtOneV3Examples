@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeviceProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DefaultProfile>
+    <Device Name="DSHMI">
+      <Property Name="IPAddress" Value="127.0.0.1" />
+      <ComplexProperty Name="Ports" Expanded="true">
+        <Property Name="Deploy" Value="61499" />
+        <Property Name="HMI" Value="61498" />
+        <Property Name="Watch" Value="61497" />
+      </ComplexProperty>
+    </Device>
+  </DefaultProfile>
+  <Profile Name="(Local Test)">
+    <Device Name="DSHMI">
+      <ComplexProperty Name="Ports" Expanded="true">
+        <Property Name="Deploy" Value="61499" />
+        <Property Name="HMI" Value="61498" />
+        <Property Name="Watch" Value="61497" />
+        <Property Name="Archive" Value="61496" />
+      </ComplexProperty>
+    </Device>
+    <Device Name="DS">
+      <ComplexProperty Name="Ports" Expanded="true">
+        <Property Name="Deploy" Value="61503" />
+        <Property Name="HMI" Value="61502" />
+        <Property Name="Watch" Value="61501" />
+        <Property Name="Archive" Value="61500" />
+      </ComplexProperty>
+    </Device>
+    <Device Name="RDS">
+      <ComplexProperty Name="Ports" Expanded="true">
+        <Property Name="Deploy" Value="61507" />
+        <Property Name="HMI" Value="61506" />
+        <Property Name="Watch" Value="61505" />
+        <Property Name="Archive" Value="61504" />
+      </ComplexProperty>
+    </Device>
+  </Profile>
+</DeviceProperties>

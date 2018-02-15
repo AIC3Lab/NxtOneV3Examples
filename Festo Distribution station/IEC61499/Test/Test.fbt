@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Test" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Andrei" Date="7/14/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Retract" />
+        <With Var="to_mgz" />
+        <With Var="to_next" />
+        <With Var="vcm_on" />
+        <With Var="vm_off" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Retract" />
+        <With Var="to_mgz" />
+        <With Var="to_next" />
+        <With Var="vcm_on" />
+        <With Var="vm_off" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="Retract" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="to_mgz" Type="BOOL" />
+      <VarDeclaration Name="to_next" Type="BOOL" />
+      <VarDeclaration Name="vcm_on" Type="BOOL" />
+      <VarDeclaration Name="vm_off" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="Test_HMI" x="920" y="620" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>125</X>
+        <Y>157.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>365</X>
+        <Y>157.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>370</X>
+        <Y>172.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="Retract">
+      <Position>
+        <X>375</X>
+        <Y>252.963547</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="to_mgz">
+      <Position>
+        <X>375</X>
+        <Y>267.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="to_next">
+      <Position>
+        <X>375</X>
+        <Y>282.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="vcm_on">
+      <Position>
+        <X>375</X>
+        <Y>297.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="vm_off">
+      <Position>
+        <X>375</X>
+        <Y>312.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="41.10425" />
+      <Connection Source="IThis.CNF" Destination="CNF" dx1="41.10425" />
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="40.83337" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="IThis.retract" Destination="Retract" dx1="41.10425" />
+      <Connection Source="IThis.to_mgz" Destination="to_mgz" dx1="41.10425" />
+      <Connection Source="IThis.to_next" Destination="to_next" dx1="41.10425" />
+      <Connection Source="IThis.vcm_on" Destination="vcm_on" dx1="41.10425" />
+      <Connection Source="IThis.vcm_off" Destination="vm_off" dx1="41.10425" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

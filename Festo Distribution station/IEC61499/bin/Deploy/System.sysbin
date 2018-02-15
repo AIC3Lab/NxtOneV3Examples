@@ -1,0 +1,5 @@
+<DeviceFiles>
+        <Device Name="System.DSHMI.dinfo.xml" />
+        <Device Name="System.DS.dinfo.xml" />
+        <Device Name="System.RDS.dinfo.xml" />
+</DeviceFiles>

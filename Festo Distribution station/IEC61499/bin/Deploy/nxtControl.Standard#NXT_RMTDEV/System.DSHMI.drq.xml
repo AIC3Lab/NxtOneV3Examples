@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RQSTCollection>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="1" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#integEC.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="2" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#ChangeDetect.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="3" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#InRange.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="4" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#ArmControl.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="5" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Composites/Main#TransferUnit.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="6" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#BigDemux.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="7" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#PhysicsRulesWorkPieces.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="8" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Composites/Main#WorkPieces.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="9" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:HMIAccessors/Main#Model_HMI.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="10" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#CylControl.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="11" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Composites/Main#Pusher.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="12" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Basics/Main#NOT_42C76073DCEB1A7A.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="13" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Composites/Main#Model.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="14" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:HMIAccessors/Main#Test_HMI.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="15" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Composites/Main#Test.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="16" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:HMIAccessors/Main#ButtonsPanel_HMI.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="17" Action="CREATE"&gt;&lt;FBType Name="IEC61499.exe:Composites/Main#ButtonsPanel.bin" /&gt;&lt;/Request&gt;</RQST>
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="18" Action="CREATE"&gt;&lt;FB Name="RES0" Type="Runtime.Management#EMB_RES_ENH" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="94" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="19" Action="CREATE"&gt;&lt;FB Name="DistributionStation" Type="Main#Model" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="97" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="20" Action="CREATE"&gt;&lt;FB Name="TestPanel" Type="Main#Test" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="98" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="21" Action="CREATE"&gt;&lt;FB Name="PanelButtons" Type="Main#ButtonsPanel" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="99" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="22" Action="CREATE"&gt;&lt;Connection Source="TestPanel.INITO" Destination="DistributionStation.INIT" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="101" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="23" Action="CREATE"&gt;&lt;Connection Source="TestPanel.CNF" Destination="DistributionStation.REQ" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="102" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="24" Action="CREATE"&gt;&lt;Connection Source="START.COLD" Destination="TestPanel.INIT" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="103" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="25" Action="CREATE"&gt;&lt;Connection Source="START.WARM" Destination="TestPanel.INIT" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="104" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="26" Action="CREATE"&gt;&lt;Connection Source="DistributionStation.INITO" Destination="PanelButtons.INIT" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="105" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="27" Action="CREATE"&gt;&lt;Connection Source="PanelButtons.CNF" Destination="PanelButtons.REQ" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="106" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="28" Action="CREATE"&gt;&lt;Connection Source="TestPanel.to_mgz" Destination="DistributionStation.to_magazine" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="109" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="29" Action="CREATE"&gt;&lt;Connection Source="TestPanel.to_next" Destination="DistributionStation.to_client" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="110" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="30" Action="CREATE"&gt;&lt;Connection Source="TestPanel.vcm_on" Destination="DistributionStation.vaccuum_off" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="111" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="31" Action="CREATE"&gt;&lt;Connection Source="TestPanel.vm_off" Destination="DistributionStation.vaccuum_on" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="112" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="32" Action="CREATE"&gt;&lt;Connection Source="TestPanel.Retract" Destination="DistributionStation.retract" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="113" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="33" Action="CREATE"&gt;&lt;Connection Source="PanelButtons.start" Destination="PanelButtons.start_led" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="114" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="34" Action="CREATE"&gt;&lt;Connection Source="PanelButtons.reset" Destination="PanelButtons.reset_led" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="115" />
+  </Request>
+  <Request>
+    <DST>RES0</DST>
+    <RQST>&lt;Request ID="35" Action="CREATE"&gt;&lt;Connection Source="PanelButtons.ack" Destination="PanelButtons.ack_led" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo LineNr="116" />
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="36" Action="WRITE"&gt;&lt;Connection Source="0" Destination="RES0.PRIO" /&gt;&lt;/Request&gt;</RQST>
+    <LineInfo />
+  </Request>
+  <Request>
+    <DST />
+    <RQST>&lt;Request ID="37" Action="START" /&gt;</RQST>
+  </Request>
+</RQSTCollection>

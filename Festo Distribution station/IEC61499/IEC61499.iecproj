@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Festo Distribution station" Guid="{3B202251-04B1-4DF9-929E-79AE1EC29A6D}" Version="1.5.0.0" xmlns="http://www.nxtcontrol.com/IEC61499.xsd">
+  <Folders>
+    <Folder Type="Basic" Name=".Control" />
+    <Folder Type="Basic" Name=".Plant" />
+    <Folder Type="Composite" Name=".Control" />
+    <Folder Type="Composite" Name=".Plant" />
+  </Folders>
+  <Archive>
+    <ExcludeDir>
+      <string>Exports</string>
+      <string>Imports</string>
+      <string>Documentation</string>
+    </ExcludeDir>
+  </Archive>
+  <References />
+  <CanvasResolution StartCanvasClass="HMI.Main.Canvases.StartCanvas_3" Width="800" Height="680" WorkAreaWidth="800" WorkAreaHeight="600" Template="Default">
+    <Topology Name="Default">
+      <Canvases>
+        <Canvas Name="DistributingStationWithHMI" Title="" Tooltip="" Instance="HMI.Main.Canvases.DistributingStationWithHMI" />
+        <Canvas Name="DistributingStation" Title="" Tooltip="" Instance="HMI.Main.Canvases.DistributingStation" />
+        <Canvas Name="RefactoredDistributionStation" Title="" Tooltip="" Instance="HMI.Main.Canvases.RefactoredDistributionStation" />
+      </Canvases>
+    </Topology>
+  </CanvasResolution>
+  <CanvasResolution StartCanvasClass="" Width="-1" Height="-1" WorkAreaWidth="-1" WorkAreaHeight="-1" Template="">
+    <Topology Name="Default" />
+  </CanvasResolution>
+  <Graphics Name="Graphics">
+    <Graphics>
+      <Graphic Name="Graphic1" Instance="HMI.Main.Graphics.Graphic1" />
+    </Graphics>
+  </Graphics>
+  <WebGraphics Name="WebGraphics" />
+  <Security Level="None">
+    <Info xsi:nil="true" />
+  </Security>
+</ProjectDatabase>
